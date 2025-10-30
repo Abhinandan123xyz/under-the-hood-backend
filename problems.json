@@ -1,0 +1,23 @@
+[
+  {
+    "id": "p1",
+    "title": "Sample Problem 1 — Easy CrackMe",
+    "description": "Reverse the sample binary and find the flag.",
+    "files": ["sample1.txt"],
+    "flagHash": "1d3f6ed6eeebc247593fce127a893c2dd68960cb2bbdd41ef3824dbb9a19a433"
+  },
+  {
+    "id": "p2",
+    "title": "Sample Problem 2 — Medium",
+    "description": "A slightly harder sample.",
+    "files": ["sample2.txt"],
+    "flagHash": "a59ee8a9d4b3a587a3a4a3d9ad4f31d197d1a2ed84b7e6b4a33bbd12c45f9038"
+  },
+  {
+    "id": "p3",
+    "title": "Sample Problem 3 — Final",
+    "description": "Final challenge!",
+    "files": ["sample3.txt"],
+    "flagHash": "1a0dd05f6da84e2ffcc2105d8493ac7b8d4b706bece06305718f7ea44746fcfa"
+  }
+]
