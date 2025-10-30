@@ -1,0 +1,3 @@
+This is a placeholder for sample1 binary.
+Replace with your actual challenge file.
+Flag for testing: FLAG{demo1}
