@@ -7,22 +7,28 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// ✅ Add your OpenAI API key here
+// ✅ Use OpenAI API key stored in Render environment
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
 app.get("/api/question", async (req, res) => {
-  const topic = req.query.topic || "general knowledge";
-  const prompt = `Generate one ${topic} question with 4 options (A,B,C,D) and specify the correct answer. Respond in JSON format.`;
+  try {
+    const topic = req.query.topic || "general knowledge";
+    const prompt = `Generate one ${topic} question with 4 options (A,B,C,D) and specify the correct answer. Respond in JSON with this format:
+    {"question":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A"}`;
 
-  const completion = await client.responses.create({
-    model: "gpt-4.1-mini",
-    input: prompt
-  });
+    const completion = await client.responses.create({
+      model: "gpt-4.1-mini",
+      input: prompt
+    });
 
-  const text = completion.output[0].content[0].text;
-  res.json(JSON.parse(text));
+    const text = completion.output[0].content[0].text;
+    res.json(JSON.parse(text));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to generate question." });
+  }
 });
 
 app.post("/api/answer", (req, res) => {
@@ -33,4 +39,4 @@ app.post("/api/answer", (req, res) => {
   });
 });
 
-app.listen(4000, () => console.log("Quiz backend running on port 4000"));
+app.listen(4000, () => console.log("🧠 AI Quiz backend running on port 4000"));
